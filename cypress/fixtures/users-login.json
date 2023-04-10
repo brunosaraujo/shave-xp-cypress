@@ -29,5 +29,17 @@
         "121323",
         "@#@!#!@",
         "xpto123"
-    ]
+    ],
+    "recuperarSenha": {
+        "name": "Joao Esquecido",
+        "email": "joao@system.com",
+        "password": "pwd123",
+        "is_shaver": false
+    },
+    "resetarSenha": {
+        "name": "Will Souza Esquecido",
+        "email": "will@system.com",
+        "password": "pwd123",
+        "is_shaver": false
+    }
 }

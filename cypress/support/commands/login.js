@@ -33,3 +33,25 @@ Cypress.Commands.add('createUser', (user) => {
         expect(response.status).to.eq(201)
     })
 })
+
+Cypress.Commands.add('recoveryPass', (user) => {
+    cy.request({
+        method: 'post',
+        url: 'http://localhost:3333/password/forgot',
+        body: { email: user }
+    }).then(result => {
+        expect(result.status).to.eql(204)
+    })
+})
+
+Cypress.Commands.add('getToken', (user) => {
+    cy.request({
+        method: 'GET',
+        url: 'http://localhost:5000/token/' + user
+    }).then(result => {
+        expect(result.status).to.eql(200)
+        //cy.log(JSON.stringify(result.body))
+        cy.log(result.body.token)
+        Cypress.env('passToken', result.body.token)
+    })
+})
