@@ -1,0 +1,15 @@
+{
+    "customer": {
+        "name": "Chris Rock",
+        "email": "chris@system.com",
+        "password": "pwd123",
+        "is_shaver": false
+    },
+    "shaver": {
+        "name": "Jeremy Adams"
+    },
+    "service": {
+        "description": "Corte de cabelo",
+        "price": "79,99"
+    }
+}
