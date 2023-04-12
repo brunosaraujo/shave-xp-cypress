@@ -1,0 +1,31 @@
+{
+    "success": {
+        "name": "Bruno Success",
+        "email": "brunosuccess@system.com",
+        "password": "pwd123",
+        "is_shaver": false
+    },
+    "sameEmail": {
+        "name": "Bruno Araujo",
+        "email": "bruno@system.com",
+        "password": "pwd123",
+        "is_shaver": false
+    },
+    "shortpass": [
+        "1",
+        "12",
+        "123",
+        "1234",
+        "12345"
+    ],
+    "invemails": [
+        "bruno&gmail.com",
+        "bruno.com.br",
+        "@gmail.com",
+        "@",
+        "papito@",
+        "121323",
+        "@#@!#!@",
+        "xpto123"
+    ]
+}
