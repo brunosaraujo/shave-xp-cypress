@@ -35,7 +35,7 @@ describe('login', () => {
             loginPage.submit(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.noticeShouldBe(message)
+            loginPage.shared.noticeErrorShouldBe(message)
 
         })
 
@@ -45,7 +45,7 @@ describe('login', () => {
             loginPage.submit(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.noticeShouldBe(message)
+            loginPage.shared.noticeErrorShouldBe(message)
 
         })
 
@@ -65,7 +65,7 @@ describe('login', () => {
             it(`Não deve logar com a senha: ${p}`, () => {
                 loginPage.submit('papito@teste.com.br', p)
 
-                loginPage.alertShouldBe('Pelo menos 6 caracteres')
+                loginPage.shared.alertShouldBe('Pelo menos 6 caracteres')
 
             })
         })
@@ -80,7 +80,7 @@ describe('login', () => {
             it(`Não deve logar com a email: ${e}`, () => {
                 loginPage.submit(e, 'pwd123')
 
-                loginPage.alertShouldBe('Informe um email válido')
+                loginPage.shared.alertShouldBe('Informe um email válido')
             })
         })
 

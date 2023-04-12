@@ -2,7 +2,9 @@ import registerUserPage from '../support/pages/register-user'
 import data from '../fixtures/user-register.json'
 
 describe('faça seu cadastro', () => {
+    
     context('quando submeto o formulário', () => {
+    
         it('deve cadastrar usuário com sucesso', () => {
             const user = data.success
 
@@ -13,7 +15,7 @@ describe('faça seu cadastro', () => {
             registerUserPage.submit(user.name, user.email, user.password)
 
             const message = 'Boas vindas, faça login para solicitar serviços!'
-            registerUserPage.noticeShouldBe(message)
+            registerUserPage.shared.noticeSuccessShouldBe(message)
         })
 
         it('não deve recadastrar um email que já existe', () => {
@@ -26,7 +28,7 @@ describe('faça seu cadastro', () => {
             registerUserPage.submit(user.name, user.email, user.password)
 
             const message = 'Oops! E-mail já cadastrado.'
-            registerUserPage.noticeShouldBe(message)
+            registerUserPage.shared.noticeErrorShouldBe(message)
         })
 
         it('campos obrigatórios', () => {
@@ -38,18 +40,18 @@ describe('faça seu cadastro', () => {
 
     context('senha muito curta', () => {
         data.shortpass.forEach((p) => {
-            it(`não deve logar com a senha: ${p}`, () => {
+            it(`não deve cadastrar com a senha: ${p}`, () => {
                 registerUserPage.submit('Bruno Araujo', 'bruno@teste.com.br', p)
-                registerUserPage.alertShouldBe('Pelo menos 6 caracteres')
+                registerUserPage.shared.alertShouldBe('Pelo menos 6 caracteres')
             })
         })
     })
 
     context('email no formato incorreto', () => {
         data.invemails.forEach((e) => {
-            it(`não deve logar com o email: ${e}`, () => {
+            it(`não deve cadastrar com o email: ${e}`, () => {
                 registerUserPage.submit('Bruno Araujo', e, 'pwd123')
-                registerUserPage.alertShouldBe('Informe um email válido')
+                registerUserPage.shared.alertShouldBe('Informe um email válido')
             })
         })
     })
