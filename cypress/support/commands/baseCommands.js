@@ -1,5 +1,5 @@
-import loginPage from '../pages/login'
-import shaversPage from '../pages/shavers'
+import loginPage from '../pages/views/login'
+import shaversPage from '../pages/views/shavers'
 
 
 Cypress.Commands.add('createUserTask', (user) => {
