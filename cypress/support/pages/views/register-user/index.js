@@ -1,11 +1,7 @@
-import shared from '../../shared'
+
 
 class RegisterUserPage {
-
-    constructor( ) {        
-        this.shared = shared
-    }
-    
+   
     go() {
         cy.visit('/signup')
 

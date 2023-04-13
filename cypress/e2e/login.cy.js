@@ -1,8 +1,5 @@
 //const { defineConfig } = require("cypress");
 
-import loginPage from '../support/pages/views/login'
-import shaversPage from '../support/pages/views/shavers'
-
 import data from '../fixtures/users-login.json'
 
 describe('login', () => {
@@ -12,8 +9,8 @@ describe('login', () => {
         it('deve logar com sucesso utilizando 100% cypress', () => {
             // dessa forma utilizamos 100% do cypress
             cy.fixture('users-login.json').then(function (data) {
-                loginPage.submit(data.success.email, data.success.password)
-                shaversPage.header.userShouldLoggedIn(data.success.name)
+                cy.submitLogin(data.success.email, data.success.password)
+                cy.userShouldBeLoggedIn(data.success.name)
             })
         })
 
@@ -22,8 +19,9 @@ describe('login', () => {
 
             cy.createUser(user)
 
-            loginPage.submit(data.success.email, data.success.password)
-            shaversPage.header.userShouldLoggedIn(data.success.name)
+            //loginPage.submit(user.email, user.password)
+            cy.submitLogin(user.email, user.password)
+            cy.userShouldBeLoggedIn(user.name)
 
         })
 
@@ -32,26 +30,26 @@ describe('login', () => {
             // utilizamos 100% do java script
             const user = data.invpass
 
-            loginPage.submit(user.email, user.password)
+            cy.submitLogin(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.shared.noticeErrorShouldBe(message)
+            cy.noticeErrorShouldBe(message)
 
         })
 
         it('não deve logar com e-mail não cadastrado', () => {
             const user = data.email404
 
-            loginPage.submit(user.email, user.password)
+            cy.submitLogin(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.shared.noticeErrorShouldBe(message)
+            cy.noticeErrorShouldBe(message)
 
         })
 
         it('campos obrigarórios', () => {
-            loginPage.submit()
-            loginPage.requiredFiels('E-mail é obrigatório', 'Senha é obrigatória')
+            cy.submitLogin()
+            cy.requiredFielsLogin('E-mail é obrigatório', 'Senha é obrigatória')
 
         })
 
@@ -63,9 +61,9 @@ describe('login', () => {
 
         passwords.forEach((p) => {
             it(`Não deve logar com a senha: ${p}`, () => {
-                loginPage.submit('papito@teste.com.br', p)
+                cy.submitLogin('papito@teste.com.br', p)
 
-                loginPage.shared.alertShouldBe('Pelo menos 6 caracteres')
+                cy.alertShouldBe('Pelo menos 6 caracteres')
 
             })
         })
@@ -78,9 +76,9 @@ describe('login', () => {
 
         emails.forEach((e) => {
             it(`Não deve logar com a email: ${e}`, () => {
-                loginPage.submit(e, 'pwd123')
+                cy.submitLogin(e, 'pwd123')
 
-                loginPage.shared.alertShouldBe('Informe um email válido')
+                cy.alertShouldBe('Informe um email válido')
             })
         })
 

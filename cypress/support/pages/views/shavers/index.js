@@ -1,9 +1,6 @@
-import header from '../../components/header'
+
 
 class ShaversPages {
-    constructor() {
-        this.header = header
-    }
 
     selectShaver(name) {
         cy.contains('figcaption h3', name)
