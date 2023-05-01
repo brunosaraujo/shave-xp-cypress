@@ -49,7 +49,13 @@ describe('login', () => {
 
         it('campos obrigarórios', () => {
             cy.submitLogin()
-            cy.requiredFielsLogin('E-mail é obrigatório', 'Senha é obrigatória')
+
+            cy.get('.alert-error')
+                .should('have.length', 2)
+                .and(($small) => {
+                    expect($small.get(0).textContent).to.equal('E-mail é obrigatório')
+                    expect($small.get(1).textContent).to.equal('Senha é obrigatória')
+                })
 
         })
 
@@ -62,7 +68,6 @@ describe('login', () => {
         passwords.forEach((p) => {
             it(`Não deve logar com a senha: ${p}`, () => {
                 cy.submitLogin('papito@teste.com.br', p)
-
                 cy.alertShouldBe('Pelo menos 6 caracteres')
 
             })
@@ -77,7 +82,6 @@ describe('login', () => {
         emails.forEach((e) => {
             it(`Não deve logar com a email: ${e}`, () => {
                 cy.submitLogin(e, 'pwd123')
-
                 cy.alertShouldBe('Informe um email válido')
             })
         })

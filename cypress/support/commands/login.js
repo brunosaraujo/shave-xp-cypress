@@ -23,11 +23,32 @@ Cypress.Commands.add('userShouldBeLoggedIn', (name) => {
         .should('have.text', 'Olá, ' + firstName)
 })
 
-Cypress.Commands.add('requiredFielsLogin', (emailMessage, passwordMessage) => {
-    cy.get('.alert-error')
-        .should('have.length', 2)
-        .and(($small) => {
-            expect($small.get(0).textContent).to.equal(emailMessage)
-            expect($small.get(1).textContent).to.equal(passwordMessage)
-        })
+Cypress.Commands.add('requestPassword', (email) => {
+    cy.visit('/forgot-password')
+
+    //checkpoint para garantir que estamos indo para o lugar certo
+    cy.get('form h1')
+        .should('have.text', 'Recuperar senha')
+
+    cy.get('input[placeholder$=mail]')
+        .type(email)
+
+    cy.contains('button', 'Recuperar')
+        .click()
+})
+
+Cypress.Commands.add('resetSenha', (token, newPass, confirmPass) => {
+    cy.visit('reset-password?token=' + token)
+
+    cy.get('form h1')
+        .should('have.text', 'Resetar senha')
+
+    cy.get('input[placeholder="Nova senha"]')
+        .type(newPass)
+
+    cy.get('input[placeholder="Confirmação da senha"]')
+        .type(confirmPass)
+
+    cy.contains('button', 'Alterar senha')
+        .click()
 })
