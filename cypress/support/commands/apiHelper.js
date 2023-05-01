@@ -1,6 +1,3 @@
-import shaversPage from '../pages/views/shavers'
-
-
 Cypress.Commands.add('createUserTask', (user) => {
     //realizado a exclusão do usuario a partir de uma com o banco
     //e realizando o cadastro de um novo usuario a partir de uma api
@@ -67,11 +64,6 @@ Cypress.Commands.add('getToken', (user) => {
         cy.log(result.body.token)
         Cypress.env('passToken', result.body.token)
     })
-})
-
-Cypress.Commands.add('uiLogin', (user) => {
-    cy.submitLogin(user.email, user.password)
-    shaversPage.header.userShouldLoggedIn(user.name)
 })
 
 Cypress.Commands.add('apiLogin', (user) => {
