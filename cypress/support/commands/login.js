@@ -54,7 +54,8 @@ Cypress.Commands.add('resetSenha', (token, newPass, confirmPass) => {
 })
 
 // Helper
-Cypress.Commands.add('uiLogin', (user) => {
+Cypress.Commands.add('uiLogin', (user) => {    
+    console.log(user)
     cy.submitLogin(user.email, user.password)
     cy.userShouldLoggedIn(user.name)
 })

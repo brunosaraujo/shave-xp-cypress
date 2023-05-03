@@ -8,7 +8,7 @@ Cypress.Commands.add('createUserTask', (user) => {
 
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/users',
+        url: Cypress.env('apiUrl') + '/users/',
         body: user
     }).then(function (response) {
         expect(response.status).to.eq(201)
@@ -27,7 +27,7 @@ Cypress.Commands.add('createUser', (user) => {
 
     cy.request({
         method: 'POST',
-        url: 'http://localhost:5000/user',
+        url: Cypress.env('apiHelper') + '/user',
         body: user
     }).then(function (response) {
         expect(response.status).to.eq(201)
@@ -38,7 +38,7 @@ Cypress.Commands.add('createUser', (user) => {
 Cypress.Commands.add('deleteUser', (user) => {
     cy.request({
         method: 'DELETE',
-        url: 'http://localhost:5000/user/' + user.email
+        url: Cypress.env('apiHelper') + '/user/' + user.email
     }).then(function (response) {
         expect(response.status).to.eq(204)
     }) 
@@ -47,7 +47,7 @@ Cypress.Commands.add('deleteUser', (user) => {
 Cypress.Commands.add('recoveryPass', (user) => {
     cy.request({
         method: 'post',
-        url: 'http://localhost:3333/password/forgot',
+        url: Cypress.env('apiUrl') + '/password/forgot',
         body: { email: user }
     }).then(result => {
         expect(result.status).to.eql(204)
@@ -57,7 +57,7 @@ Cypress.Commands.add('recoveryPass', (user) => {
 Cypress.Commands.add('getToken', (user) => {
     cy.request({
         method: 'GET',
-        url: 'http://localhost:5000/token/' + user
+        url: Cypress.env('apiHelper') + '/token/' + user
     }).then(result => {
         expect(result.status).to.eql(200)
         //cy.log(JSON.stringify(result.body))
@@ -69,7 +69,7 @@ Cypress.Commands.add('getToken', (user) => {
 Cypress.Commands.add('apiLogin', (user) => {
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/sessions',
+        url: Cypress.env('apiUrl') + '/sessions',
         body: { email: user.email,
                 password: user.password }
     }).then(response => {

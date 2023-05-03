@@ -2,37 +2,33 @@
 import data from '../fixtures/order.json'
 
 
-describe('pedido', () => {
+// describe('pedido', () => {
 
-    context('usuario logado', () => {
+//     context('usuario logado', () => {
 
-        //inportação das massas de order
-        const { customer, shaver, service } = data
+//         //inportação das massas de order
+//         const { customer, shaver, service } = data
 
-        before(() => {
+//         before(() => {
+//             cy.createUser(customer)
+//             cy.uiLogin(customer)
+//         })
 
-            cy.createUser(customer)
-            cy.uiLogin(customer)
-        })
 
-
-        it('deve poder solicitar serviços', () => {
-            shaversPage.selectShaver(shaver.name)
-            catalogPage.hasShaver(shaver.name)
+//         it.only('deve poder solicitar serviços', () => {
+//             cy.selectShaver(shaver.name)
+//             cy.selecService(service.description)
             
-            catalogPage.selectService(service.description)
-            catalogPage.hasTitle(service.description)
-
-            catalogPage.confirmOrder()
-            orderPage.hasOrder()
-        })
+//             cy.confirmOrder()
+//             cy.hasOrder()
+//         })
 
 
-    })
+//     })
 
-})
+// })
 
-describe.only('pedido', () => {
+describe('pedido', () => {
 
     context('usuario logado via api', () => {
 
