@@ -2,7 +2,7 @@ import data from '../fixtures/users-login.json'
 
 describe('esqueci minha senha', () => {
 
-  it.only('deve poder solicitar o resgate de senha', () => {
+  it('deve poder solicitar o resgate de senha', () => {
 
     const user = data.recuperarSenha
     cy.createUser(user)
@@ -37,9 +37,8 @@ describe('esqueci minha senha', () => {
     })
 
     afterEach(() => {
-
-      cy.submitLogin(data.email, 'abc123')
-      cy.userShouldBeLoggedIn(data.success.name)
+      cy.submitLogin(user.email, 'abc123')
+      cy.userShouldBeLoggedIn(user.name)
     })
   })
 
