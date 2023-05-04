@@ -4,7 +4,7 @@
   "description": "Projeto de testes de ponta a ponta para o Shave eXperience",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node runner.js",
     "apiHelper": "nodemon api/app.js"
   },
   "keywords": [
