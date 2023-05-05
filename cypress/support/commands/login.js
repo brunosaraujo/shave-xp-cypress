@@ -1,5 +1,4 @@
-Cypress.Commands.add('submitLogin', (email = null, password = null) => {
-    cy.visit('/')
+Cypress.Commands.add('submitLogin', (email = null, password = null) => {   
 
     cy.get('input[placeholder$=email]').as('email')
     cy.get('input[placeholder*=senha]').as('password')

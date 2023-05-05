@@ -1,6 +1,6 @@
 //const { defineConfig } = require("cypress");
 
-import data from '../fixtures/users-login.json'
+import data from '../../fixtures/users-login.json'
 
 describe('login', () => {
 

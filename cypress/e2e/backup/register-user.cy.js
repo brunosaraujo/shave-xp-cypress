@@ -1,4 +1,4 @@
-import data from '../fixtures/user-register.json'
+import data from '../../fixtures/user-register.json'
 
 describe('faça seu cadastro', () => {
     

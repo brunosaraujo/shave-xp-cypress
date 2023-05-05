@@ -1,4 +1,4 @@
-import data from '../fixtures/users-login.json'
+import data from '../../fixtures/users-login.json'
 
 describe('esqueci minha senha', () => {
 
